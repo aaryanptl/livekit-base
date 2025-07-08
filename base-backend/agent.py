@@ -26,7 +26,7 @@ async def entrypoint(ctx: agents.JobContext):
         llm=openai.LLM(model="gpt-4o-mini"),
         tts=openai.TTS(voice="alloy"),
         vad=silero.VAD.load(),
-        turn_detection=MultilingualModel(),
+        # turn_detection=MultilingualModel(), # NOTE: Temporarily disabled due to runtime errors
     )
 
     await session.start(
