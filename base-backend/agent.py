@@ -1,3 +1,4 @@
+import sys
 from dotenv import load_dotenv
 
 from livekit import agents
@@ -12,6 +13,17 @@ from livekit.plugins import (
 from livekit.plugins.turn_detector.multilingual import MultilingualModel
 
 load_dotenv()
+
+
+def download_models():
+    """
+    Downloads all the required models for the agent to run.
+    """
+    print("Downloading Silero VAD model...")
+    silero.VAD.load()
+    print("Downloading Multilingual model...")
+    MultilingualModel()
+    print("Downloads complete.")
 
 
 class Assistant(Agent):
@@ -47,4 +59,7 @@ async def entrypoint(ctx: agents.JobContext):
 
 
 if __name__ == "__main__":
-    agents.cli.run_app(agents.WorkerOptions(entrypoint_fnc=entrypoint))
+    if len(sys.argv) > 1 and sys.argv[1] == "download-files":
+        download_models()
+    else:
+        agents.cli.run_app(agents.WorkerOptions(entrypoint_fnc=entrypoint))
