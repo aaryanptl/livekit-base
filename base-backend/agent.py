@@ -15,17 +15,6 @@ from livekit.plugins.turn_detector.multilingual import MultilingualModel
 load_dotenv()
 
 
-def download_models():
-    """
-    Downloads all the required models for the agent to run.
-    """
-    print("Downloading Silero VAD model...")
-    silero.VAD.load()
-    print("Downloading Multilingual model...")
-    MultilingualModel()
-    print("Downloads complete.")
-
-
 class Assistant(Agent):
     def __init__(self) -> None:
         super().__init__(instructions="You are a helpful voice AI assistant.")
@@ -59,7 +48,4 @@ async def entrypoint(ctx: agents.JobContext):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "download-files":
-        download_models()
-    else:
-        agents.cli.run_app(agents.WorkerOptions(entrypoint_fnc=entrypoint))
+    agents.cli.run_app(agents.WorkerOptions(entrypoint_fnc=entrypoint))

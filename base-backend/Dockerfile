@@ -27,7 +27,7 @@ RUN useradd --create-home --shell /bin/bash app && \
 USER app
 
 # Download required files
-RUN python3 agent.py download-files
+RUN python3 download.py
 
 # Set environment variables
 ENV PYTHONPATH=/app
