@@ -21,9 +21,9 @@ def download_models():
     """
     print("Downloading Silero VAD model...")
     silero.VAD.load()
-    print("Downloading Multilingual model...")
-    MultilingualModel()
-    print("Downloads complete.")
+    # MultilingualModel is initialized on first use, as it requires a job context
+    # which is not available during the build process.
+    print("Pre-warming of cacheable models complete.")
 
 
 class Assistant(Agent):
