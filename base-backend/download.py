@@ -7,6 +7,6 @@ silero.VAD.load()
 print("Downloading multilingual turn detection model...")
 snapshot_download(repo_id="livekit/turn-detector",
                   revision="v0.2.0-intl",
-                  repo_type="space")
+                  repo_type="model")
 
 print("All models downloaded.") 
